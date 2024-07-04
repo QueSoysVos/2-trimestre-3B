@@ -5,6 +5,39 @@ const caixaResultado = document.querySelector(".caixa-resultado");
 const textoResultado = document.querySelector(".texto-resultado");
 
 const perguntas = [
-    "pergunta 1",
-    "pergunta 2"
-    ]
+    {
+        enunciado: "pergunta 1",
+        alternativas: [
+            "alternativas 1",
+            "alternativas 2"
+        ]
+    }
+    {
+        enunciado: "pergunta 1",
+        alternativas: [
+            "alternativas 1",
+            "alternativas 2"
+        ]
+    },
+    {
+        enunciado: "pergunta 1",
+        alternativas: [
+            "alternativas 1",
+            "alternativas 2"
+        ]
+    },
+    {
+        enunciado: "pergunta 1",
+        alternativas: [
+            "alternativas 1",
+            "alternativas 2"
+        ]
+    },
+    {
+        enunciado: "pergunta 1",
+        alternativas: [
+            "alternativas 1",
+            "alternativas 2"
+        ]
+    }
+]
