@@ -1,53 +1,118 @@
+// Seleciona os elementos do DOM
 const caixaPrincipal = document.querySelector(".caixa-principal");
-const caixaPerguntas = document.querySelector(".perguntas");
-const caixaAlternativas = document.querySelector(".caixa-palternativas");
+const caixaPerguntas = document.querySelector(".caixa-perguntas");
+const caixaAlternativas = document.querySelector(".caixa-alternativas");
 const caixaResultado = document.querySelector(".caixa-resultado");
 const textoResultado = document.querySelector(".texto-resultado");
 
+// Definindo as perguntas e alternativas
 const perguntas = [
     {
-        enunciado: "Assim que saiu da escola voce se depara com uma nova tecnologia, um chat que consegue responder todas as duvidas que uma pessoa pode ter, ele tambem gera imagens e audios hiper-realistas. Qual o primeiro pensamento?",
+        enunciado: "Você encontrou um novo aplicativo de redes sociais que promete conectar pessoas com interesses semelhantes. Qual a sua reação inicial?",
         alternativas: [
-            "Isso e assustador!",
-            "Isso e maravilhoso!"
+            {
+                texto: "Parece interessante, mas vou esperar para ver como ele se sai.",
+                afirmacao: "Você decidiu acompanhar o aplicativo por algum tempo para avaliar sua utilidade e popularidade."
+            },
+            {
+                texto: "Preciso baixar agora mesmo e ver como funciona!",
+                afirmacao: "Você se empolgou e decidiu explorar todas as funcionalidades do aplicativo imediatamente."
+            }
         ]
     },
     {
-        enunciado: "Com a descoberta desta tecnologia, chamada Inteligencia Artificial, uma professora de tecnologia da escola decidiu fazer uma sequencia de aulas sobre esta tecnologia. No fim de uma aula ela pede que voce escreva um trabalho sobre o uso de IA em sala de aula. Qual atitude voce toma?",
+        enunciado: "Durante uma discussão em sala de aula, seu professor pede para escrever um ensaio sobre o impacto das redes sociais na comunicação moderna. Qual abordagem você escolheria?",
         alternativas: [
-            "Utiliza uma ferramenta de busca na internet que utiliza IA para que ela ajude a encontrar informacoes relevantes para o trabalho e explique numa linguagem que facilite o entendimento.",
-            "Escreve o trabalho com base nas conversas que teve com colegas, algumas pesquisas na internet e conhecimentos proprios sobre o tema."
+            {
+                texto: "Utilizaria uma plataforma de pesquisa para encontrar artigos e dados recentes sobre o impacto das redes sociais.",
+                afirmacao: "Você conseguiu encontrar informações detalhadas e atualizadas sobre o tema, contribuindo para um ensaio bem fundamentado."
+            },
+            {
+                texto: "Escreveria com base em experiências pessoais e observações, além de pesquisas básicas na internet.",
+                afirmacao: "Você optou por um ensaio mais pessoal e direto, refletindo suas próprias experiências e perspectivas."
+            }
         ]
     },
     {
-        enunciado: "Apos a elaboracao do trabalho escrito, a professora realizou um debate entre a turma para entender como foi realizada a pesquisa e escrita. Nessa conversa tambem foi levantado um ponto muito importante: como a IA impacta o trabalho do futuro. Nesse debate, como voce se posiciona?",
+        enunciado: "Após entregar o ensaio, há uma discussão na turma sobre como as redes sociais podem influenciar a vida profissional. Como você se posiciona?",
         alternativas: [
-            "Defende a ideia de que a IA pode criar novas oportunidades de emprego e melhorar habilidades humanas.",
-            "Me preocupo com as pessoas que perderao seus empregos para maquinas e defendem a importancia de proteger os trabalhadores."
+            {
+                texto: "Acredito que as redes sociais podem criar novas oportunidades de networking e desenvolvimento profissional.",
+                afirmacao: "Você vê as redes sociais como uma ferramenta valiosa para a criação de conexões e avanço na carreira."
+            },
+            {
+                texto: "Estou preocupado com o impacto negativo que elas podem ter na privacidade e segurança dos profissionais.",
+                afirmacao: "Você se preocupa com os riscos associados às redes sociais e defende a importância de proteger a privacidade dos usuários."
+            }
         ]
     },
     {
-        enunciado: "Ao final da discussao, voce precisou criar uma imagem no computador que representasse o que pensa sobre IA. E agora?",
+        enunciado: "Você precisa criar um gráfico para um projeto sobre o uso de redes sociais em diferentes faixas etárias. Como você procede?",
         alternativas: [
-            "Criar uma imagem utilizando uma plataforma de design como o Paint.",
-            "Criar uma imagem utilizando um gerador de imagem de IA."
+            {
+                texto: "Utiliza um software de design gráfico para criar um gráfico personalizado.",
+                afirmacao: "Você decidiu criar um gráfico visualmente atraente usando suas habilidades em design gráfico."
+            },
+            {
+                texto: "Usa uma ferramenta online de geração de gráficos que simplifica o processo.",
+                afirmacao: "Você acelerou o processo utilizando uma ferramenta online, permitindo uma criação rápida e eficiente do gráfico."
+            }
         ]
     },
     {
-        enunciado: "Voce tem um trabalho em grupo de biologia para entregar na semana seguinte, o andamento do trabalho esta um pouco atrasado e uma pessoa do seu grupo decidiu fazer com ajuda da IA. O problema e que o trabalho esta totalmente igual ao do chat. O que voce faz? ",
+        enunciado: "Seu grupo de trabalho está atrasado com a pesquisa sobre o impacto das redes sociais. Um dos membros sugere usar um gerador de texto automático para agilizar. O que você faz?",
         alternativas: [
-            "Escrever comandos para o chat e uma forma de contribuir com o trabalho, por isso nao e um problema utilizar o texto inteiro.",
-            "O chat pode ser uma tecnologia muito avancada, mas e preciso manter a atencao pois toda maquina erra, por isso revisar o trabalho e contribuir com as perspectivas pessoais e essencial."
+            {
+                texto: "Aceita a sugestão e usa o gerador para acelerar o processo, mesmo sabendo que pode precisar revisar o conteúdo.",
+                afirmacao: "Você optou por uma solução rápida, mas depois precisou revisar o conteúdo gerado para garantir precisão."
+            },
+            {
+                texto: "Prefere dedicar mais tempo revisando e compilando as informações manualmente para garantir a qualidade e a originalidade do trabalho.",
+                afirmacao: "Você priorizou a qualidade do trabalho e preferiu revisar manualmente as informações para assegurar que fossem precisas e relevantes."
+            }
         ]
-    }
+    },
 ];
 
 let atual = 0;
-let perguntaAtual;
+let historiaFinal = "";
 
+// Função principal para iniciar a exibição da pergunta atual
 function mostraPergunta() {
-    perguntaAtual = perguntas[atual];
+    if (atual >= perguntas.length) {
+        mostraResultado();
+        return;
+    }
+
+    const perguntaAtual = perguntas[atual];
     caixaPerguntas.textContent = perguntaAtual.enunciado;
+    caixaAlternativas.innerHTML = ""; // Limpa alternativas anteriores
+    mostraAlternativas(perguntaAtual.alternativas);
 }
 
-mostraPergunta()
+// Função para exibir alternativas
+function mostraAlternativas(alternativas) {
+    alternativas.forEach(alternativa => {
+        const botaoAlternativa = document.createElement("button");
+        botaoAlternativa.textContent = alternativa.texto;
+        botaoAlternativa.addEventListener("click", () => respostaSelecionada(alternativa));
+        caixaAlternativas.appendChild(botaoAlternativa);
+    });
+}
+
+// Função para tratar a seleção da resposta
+function respostaSelecionada(opcaoSelecionada) {
+    historiaFinal += opcaoSelecionada.afirmacao + " ";
+    atual++;
+    mostraPergunta();
+}
+
+// Função para mostrar o resultado final
+function mostraResultado() {
+    caixaPerguntas.textContent = "Sua jornada através das redes sociais...";
+    textoResultado.textContent = historiaFinal;
+    caixaAlternativas.innerHTML = ""; // Limpa alternativas finais
+}
+
+// Inicializa a aplicação
+mostraPergunta();
