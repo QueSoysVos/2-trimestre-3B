@@ -1,43 +1,89 @@
-:root{
-    --cor-fundo: #01080E ;
-    --cor-principal: #0B0D20 ;
-    --cor-secundaria: #212333; 
-    --cor-destaque: #2BDEFD;
-    --cor-texto: #D7F9FF;
-
+:root {
+    --cor-fundo: #F4F4F4; /* Fundo neutro claro, será sobreposto pela imagem de fundo */
+    --cor-principal: #FFFFFF; /* Branco para a área principal */
+    --cor-secundaria: #007BFF; /* Azul vibrante para o botão */
+    --cor-destaque: #28A745; /* Verde para destaques */
+    --cor-texto: #333333; /* Texto escuro para contraste */
+    --cor-texto-secundario: #6C757D; /* Cinza para texto secundário */
+    --espaco: 20px; /* Espaçamento padrão */
+    --imagem-fundo: url('caminho/para/sua-imagem.jpg'); /* Substitua pelo caminho da sua imagem */
 }
 
 body {
-    background-color: var(--cor-fundo);
+    background: var(--imagem-fundo) no-repeat center center fixed; /* Imagem de fundo */
+    background-size: cover; /* Ajusta a imagem para cobrir o fundo */
     color: var(--cor-texto);
+    font-family: 'Helvetica Neue', Arial, sans-serif; /* Fonte moderna e clara */
+    margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
 }
 
-.caixa-principal{
+.caixa-principal {
     background-color: var(--cor-principal);
     width: 90%;
     max-width: 600px;
     text-align: center;
-    padding: 20px;
+    padding: var(--espaco);
+    border-radius: 8px; /* Cantos arredondados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra leve */
+    border: 1px solid #E0E0E0; /* Borda suave */
 }
 
-h1{
+h1 {
     color: var(--cor-destaque);
+    font-size: 2em;
+    margin-bottom: var(--espaco);
 }
 
 button {
     background-color: var(--cor-secundaria);
-    color: var(--cor-texto);
+    color: var(--cor-principal);
     border: none;
-    border-radius: 15px;
-    padding: 15px;
-    transition: background-color 0.3s;
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    margin: var(--espaco) 0; /* Espaçamento entre botões e outros elementos */
 }
 
-button:hover{
-    background-color: var(--cor-destaque);
-    color: var(--cor-principal);
+button:hover {
+    background-color: #0056b3; /* Azul mais escuro no hover */
 }
+
+button:focus {
+    outline: 3px solid var(--cor-destaque);
+    outline-offset: 2px;
+}
+
+button:active {
+    transform: scale(0.98); /* Efeito de clique */
+}
+
+p {
+    color: var(--cor-texto-secundario);
+    margin: 0;
+    padding: 0;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    margin: var(--espaco) 0;
+}
+
+.social-icons a {
+    color: var(--cor-secundaria);
+    font-size: 2em; /* Tamanho dos ícones */
+    margin: 0 10px;
+    transition: color 0.3s;
+    text-decoration: none;
+}
+
+.social-icons a:hover {
+    color: var(--cor-destaque); /* Cor de destaque no hover */
+}
+
